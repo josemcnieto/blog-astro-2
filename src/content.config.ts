@@ -14,6 +14,10 @@ const blog = defineCollection({
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
 			heroImage: z.optional(image()),
+			// Créditos de la fotografía de portada (Wikimedia Commons)
+			imageCredit: z.string().optional(),
+			imageLicense: z.string().optional(),
+			imageSource: z.string().optional(),
 		}),
 });
 

@@ -2,7 +2,10 @@
 title: 'El espacio público se mide a pie'
 description: 'Por qué una buena ciudad no se mide por sus monumentos, sino por la calidad de sus trayectos cotidianos.'
 pubDate: '2026-07-20'
-heroImage: '../../assets/blog-placeholder-5.jpg'
+heroImage: '../../assets/foster/metro-bilbao.jpg'
+imageCredit: 'Estación de Indautxu, metro de Bilbao · Fred Romero'
+imageLicense: 'CC BY 2.0'
+imageSource: 'https://commons.wikimedia.org/wiki/File:Bilbao_-_Indautxu_Metro_Station_(29161509871).jpg'
 ---
 
 Hay ciudades que se entienden desde un mapa y ciudades que solo se entienden caminándolas. La

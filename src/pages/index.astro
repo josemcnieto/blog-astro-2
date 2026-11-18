@@ -9,24 +9,105 @@ import { SITE_DESCRIPTION, SITE_TITLE, withBase } from '../consts';
 <html lang="es">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				width: 900px;
+			}
+			.hero {
+				position: relative;
+				overflow: hidden;
+				padding: clamp(2rem, 6vw, 4rem);
+			}
+			.hero::before {
+				content: '';
+				position: absolute;
+				inset: 0 0 auto 0;
+				height: 3px;
+				background: linear-gradient(90deg, var(--accent), var(--cyan), transparent);
+			}
+			.hero h1 {
+				margin: 0.5em 0;
+				font-size: clamp(2.2rem, 6vw, 3.4rem);
+			}
+			.hero p:not(.eyebrow) {
+				max-width: 62ch;
+				color: var(--muted);
+			}
+			.actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.75rem;
+				margin-top: 2rem;
+			}
+			.button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+				padding: 0.7em 1.3em;
+				border: 1px solid var(--border-strong);
+				border-radius: 999px;
+				font-size: 0.95rem;
+				font-weight: 700;
+				text-decoration: none;
+				box-shadow: var(--shadow);
+				transition:
+					transform 0.2s ease,
+					box-shadow 0.2s ease,
+					background-color 0.2s ease,
+					color 0.2s ease;
+			}
+			.button::after {
+				content: '→';
+				font-family: var(--mono);
+			}
+			.button:hover {
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-hover);
+			}
+			.button.primary {
+				background: var(--accent);
+				border-color: var(--accent);
+				color: #fff;
+			}
+			.button.primary:hover {
+				background: var(--accent-dark);
+				color: #fff;
+			}
+			.button.secondary {
+				background: var(--surface);
+				color: var(--accent);
+			}
+			.button.secondary:hover {
+				background: rgba(11, 95, 255, 0.1);
+				color: var(--accent-dark);
+			}
+			@media (max-width: 720px) {
+				main {
+					width: 100%;
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>Arquitectura, ciudad y detalles</h1>
-			<p>
-				Bienvenido a <strong>{SITE_TITLE}</strong>, un cuaderno personal donde recojo reflexiones,
-				lecturas y apuntes sobre los edificios y los lugares que habitamos.
-			</p>
-			<p>
-				Me interesa la arquitectura que se explica por sí misma: cómo se construye, cómo se usa y
-				cómo contribuye a una ciudad más cómoda, inclusiva y sostenible. Aquí se combinan temas como la
-				luz, la escala, los materiales, el espacio público y el detalle constructivo.
-			</p>
-			<p>
-				<a href={withBase('/blog/')}>Explora las entradas</a> o pasa por
-				<a href={withBase('/about/')}>Acerca de mí</a> para saber quién escribe.
-			</p>
+			<section class="hero panel">
+				<p class="eyebrow">SISTEMA / ARQUITECTURA</p>
+				<h1>Arquitectura, ciudad y detalles</h1>
+				<p>
+					Bienvenido a <strong>{SITE_TITLE}</strong>, un cuaderno personal donde recojo reflexiones,
+					lecturas y apuntes sobre los edificios y los lugares que habitamos.
+				</p>
+				<p>
+					Me interesa la arquitectura que se explica por sí misma: cómo se construye, cómo se usa y
+					cómo contribuye a una ciudad más cómoda, inclusiva y sostenible. Aquí se combinan temas como la
+					luz, la escala, los materiales, el espacio público y el detalle constructivo.
+				</p>
+				<div class="actions">
+					<a class="button primary" href={withBase('/blog/')}>Explora las entradas</a>
+					<a class="button secondary" href={withBase('/about/')}>Acerca de mí</a>
+				</div>
+			</section>
 		</main>
 		<Footer />
 	</body>

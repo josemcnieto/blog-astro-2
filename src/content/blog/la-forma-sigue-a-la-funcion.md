@@ -2,7 +2,10 @@
 title: 'La forma sigue a la función (y a otras cosas)'
 description: 'Una revisión de la frase más citada del modernismo y de sus límites.'
 pubDate: '2026-08-15'
-heroImage: '../../assets/blog-placeholder-2.jpg'
+heroImage: '../../assets/foster/hsbc-hong-kong.jpg'
+imageCredit: 'Sede del HSBC, Hong Kong · Deror_avi'
+imageLicense: 'CC BY-SA 3.0'
+imageSource: 'https://commons.wikimedia.org/wiki/File:Hong_Kong_HSBC_headquarters_building_IMG_5371.JPG'
 ---
 
 «Form follows function». La frase de Louis Sullivan, escrita a finales del siglo XIX y convertida en

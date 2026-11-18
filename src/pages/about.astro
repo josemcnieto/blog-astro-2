@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
+import AboutHeroImage from '../assets/foster/apple-park.jpg';
 import PageLayout from '../layouts/PageLayout.astro';
-import { withBase } from '../consts';
+import { licenseUrl, withBase } from '../consts';
 ---
 
 <PageLayout
@@ -10,12 +10,22 @@ import { withBase } from '../consts';
 	description="Quién escribe El blog de Arquitectura y por qué existe este espacio."
 	image={AboutHeroImage}
 >
-	<Image
-		width={1020}
-		height={510}
-		src={AboutHeroImage}
-		alt="Ilustración de un edificio y su entorno"
-	/>
+	<figure>
+		<Image
+			width={1020}
+			height={510}
+			src={AboutHeroImage}
+			alt="Vista aérea al atardecer del Apple Park de Foster en Cupertino"
+		/>
+		<figcaption>
+			Foto: <a
+				href="https://commons.wikimedia.org/wiki/File:Apple_Park_dusk_aerial.jpg"
+				target="_blank"
+				rel="noopener noreferrer">Apple Park, Cupertino · Dicklyon</a
+			>
+			· <a href={licenseUrl('CC BY-SA 4.0')} target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>
+		</figcaption>
+	</figure>
 
 	<h1>Acerca de mí</h1>
 

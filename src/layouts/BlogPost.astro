@@ -5,10 +5,20 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import { licenseUrl } from '../consts';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const {
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	heroImage,
+	imageCredit,
+	imageLicense,
+	imageSource,
+} = Astro.props;
 ---
 
 <html lang="es">
@@ -22,35 +32,66 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			}
 			.hero-image {
 				width: 100%;
+				margin: 0;
 			}
 			.hero-image img {
 				display: block;
+				width: 100%;
+				max-width: 1020px;
 				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
+				border: 1px solid var(--border);
+				box-shadow: var(--shadow);
+			}
+			.hero-image figcaption {
+				max-width: 1020px;
+				margin: 0.6rem auto 0;
+				padding: 0 1em;
+				font-family: var(--mono);
+				font-size: 0.72rem;
+				letter-spacing: 0.02em;
+				color: var(--muted);
+				text-align: right;
 			}
 			.prose {
 				width: 720px;
 				max-width: calc(100% - 2em);
 				margin: auto;
 				padding: 1em;
-				color: rgb(var(--gray-dark));
+				color: var(--text);
 			}
 			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
+				margin-bottom: 2em;
+				padding: 2em 0 1em;
 				text-align: center;
 				line-height: 1;
 			}
 			.title h1 {
-				margin: 0 0 0.5em 0;
+				margin: 0.5em 0;
 			}
 			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				margin: 0;
+				font-family: var(--mono);
+				font-size: 0.8rem;
+				letter-spacing: 0.1em;
+				color: var(--muted);
+			}
+			.divider {
+				height: 1px;
+				margin: 1.5em auto 0;
+				max-width: 160px;
+				background: linear-gradient(90deg, transparent, var(--accent), var(--cyan), transparent);
 			}
 			.last-updated-on {
-				font-style: italic;
+				display: inline-block;
+				margin-top: 1em;
+				padding: 0.3em 0.9em;
+				border: 1px solid var(--border);
+				border-radius: 999px;
+				background: var(--surface);
+				font-family: var(--mono);
+				font-size: 0.72rem;
+				letter-spacing: 0.04em;
+				color: var(--muted);
 			}
 		</style>
 	</head>
@@ -59,30 +100,50 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<Header />
 		<main>
 			<article>
-				<div class="hero-image">
+				<figure class="hero-image">
 					{
 						heroImage && (
 							<Image
 								width={1020}
 								height={510}
 								src={heroImage}
-								alt={`Imagen de portada de ${title}`}
+								alt={`${title} — fotografía de arquitectura`}
 							/>
 						)
 					}
-				</div>
+					{
+						imageCredit && (
+							<figcaption>
+								Foto:{' '}
+								{imageSource ? (
+									<a href={imageSource} target="_blank" rel="noopener noreferrer">
+										{imageCredit}
+									</a>
+								) : (
+									imageCredit
+								)}
+								{imageLicense && (
+									<>
+										{' · '}
+										<a href={licenseUrl(imageLicense)} target="_blank" rel="noopener noreferrer">
+											{imageLicense}
+										</a>
+									</>
+								)}
+							</figcaption>
+						)
+					}
+				</figure>
 				<div class="prose">
 					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{updatedDate && (
-								<div class="last-updated-on">
-									Actualizado el <FormattedDate date={updatedDate} />
-								</div>
-							)}
-						</div>
+						<p class="date"><FormattedDate date={pubDate} /></p>
 						<h1>{title}</h1>
-						<hr />
+						<div class="divider"></div>
+						{updatedDate && (
+							<p class="last-updated-on">
+								Actualizado el <FormattedDate date={updatedDate} />
+							</p>
+						)}
 					</div>
 					<slot />
 				</div>

@@ -17,11 +17,50 @@ const { title, description, image } = Astro.props;
 <html lang="es">
 	<head>
 		<BaseHead {title} {description} {image} />
+		<style>
+			main {
+				width: 900px;
+			}
+			.panel {
+				position: relative;
+				overflow: hidden;
+				padding: clamp(1.5rem, 5vw, 3rem);
+			}
+			.panel::before {
+				content: '';
+				position: absolute;
+				inset: 0 0 auto 0;
+				height: 3px;
+				background: linear-gradient(90deg, var(--accent), var(--cyan), transparent);
+			}
+			.prose > :global(h1) {
+				margin-bottom: 0.6em;
+			}
+			.prose > :global(img) {
+				width: 100%;
+				margin-bottom: 1.5em;
+				border: 1px solid var(--border);
+				box-shadow: var(--shadow);
+			}
+			.prose :global(figcaption) {
+				margin: -1em 0 2em;
+				font-family: var(--mono);
+				font-size: 0.72rem;
+				letter-spacing: 0.02em;
+				color: var(--muted);
+				text-align: right;
+			}
+			@media (max-width: 720px) {
+				main {
+					width: 100%;
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<article class="prose">
+			<article class="prose panel">
 				<slot />
 			</article>
 		</main>

@@ -2,7 +2,10 @@
 title: 'La arquitectura como lenguaje'
 description: 'Una introducción a la idea de que los edificios comunican antes de que podamos leerlos.'
 pubDate: '2026-10-12'
-heroImage: '../../assets/blog-placeholder-3.jpg'
+heroImage: '../../assets/foster/british-museum-great-court.jpg'
+imageCredit: 'Great Court del British Museum, Londres · Diliff'
+imageLicense: 'CC BY-SA 3.0'
+imageSource: 'https://commons.wikimedia.org/wiki/File:British_Museum_Great_Court,_London,_UK_-_Diliff.jpg'
 ---
 
 La arquitectura es una de las pocas disciplinas que se comunica sin necesidad de palabras. Un edificio

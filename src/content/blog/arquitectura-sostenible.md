@@ -2,7 +2,10 @@
 title: 'Arquitectura sostenible: mucho más que placas solares'
 description: 'Las decisiones que realmente reducen el consumo de un edificio empiezan mucho antes de hablar de energía.'
 pubDate: '2026-09-28'
-heroImage: '../../assets/blog-placeholder-4.jpg'
+heroImage: '../../assets/foster/gherkin.jpg'
+imageCredit: '30 St Mary Axe (The Gherkin), Londres · mattbuck'
+imageLicense: 'CC BY-SA 3.0'
+imageSource: 'https://commons.wikimedia.org/wiki/File:London_MMB_41_30_St_Mary_Ax.jpg'
 ---
 
 Cuando se habla de arquitectura sostenible suele pensarse primero en placas solares, grifos de bajo
