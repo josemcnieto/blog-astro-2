@@ -5,9 +5,16 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import {
+	blogPostingSchema,
+	breadcrumbSchema,
+	coverUrl,
+	internalUrl,
+	webPageSchema,
+} from '../structured-data';
 import { licenseUrl } from '../consts';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & { slug: string };
 
 const {
 	title,
@@ -18,12 +25,29 @@ const {
 	imageCredit,
 	imageLicense,
 	imageSource,
+	slug,
 } = Astro.props;
+
+const site = Astro.site!;
+const postUrl = internalUrl(`/blog/${slug}/`, site);
+const pageSchema = [
+	webPageSchema({ site, url: postUrl, name: title, description }),
+	blogPostingSchema({
+		site,
+		url: postUrl,
+		title,
+		description,
+		image: coverUrl(heroImage, site),
+		pubDate,
+		updatedDate,
+	}),
+	breadcrumbSchema({ site, postUrl, postTitle: title }),
+];
 ---
 
 <html lang="es">
 	<head>
-		<BaseHead title={title} description={description} image={heroImage} />
+		<BaseHead title={title} description={description} image={heroImage} schema={pageSchema} />
 		<style>
 			main {
 				width: calc(100% - 2em);

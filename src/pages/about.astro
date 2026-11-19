@@ -2,13 +2,26 @@
 import { Image } from 'astro:assets';
 import AboutHeroImage from '../assets/foster/apple-park.jpg';
 import PageLayout from '../layouts/PageLayout.astro';
+import { internalUrl, webPageSchema } from '../structured-data';
 import { licenseUrl, withBase } from '../consts';
+
+const site = Astro.site!;
+const aboutUrl = internalUrl('/about/', site);
+const description = 'Quién escribe El blog de Arquitectura y por qué existe este espacio.';
 ---
 
 <PageLayout
 	title="Acerca de mí"
-	description="Quién escribe El blog de Arquitectura y por qué existe este espacio."
+	description={description}
 	image={AboutHeroImage}
+	schema={webPageSchema({
+		site,
+		url: aboutUrl,
+		name: 'Acerca de mí',
+		description,
+		type: 'ProfilePage',
+		mainEntity: { '@id': `${aboutUrl}#person` },
+	})}
 >
 	<figure>
 		<Image

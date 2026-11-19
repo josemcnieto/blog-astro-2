@@ -3,6 +3,11 @@
 export const SITE_TITLE = 'El blog de Arquitectura';
 export const SITE_DESCRIPTION =
 	'Reflexiones y apuntes sobre arquitectura, ciudad y sostenibilidad';
+export const SITE_AUTHOR = 'josem';
+export const SITE_AUTHOR_DESCRIPTION =
+	'Autor de El blog de Arquitectura, un cuaderno sobre arquitectura, ciudad y sostenibilidad.';
+export const SITE_LANGUAGE = 'es';
+export const SITE_LOCALE = 'es_ES';
 
 /**
  * Añade la ruta base de GitHub Pages a una ruta interna.

@@ -3,19 +3,25 @@
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
-import FallbackImage from '../assets/foster/millau-viaduct.jpg';
-import { SITE_TITLE, withBase } from '../consts';
 import { Font } from 'astro:assets';
+import JsonLd from './JsonLd.astro';
+import { coverUrl, personSchema, websiteSchema, type JsonLdNode } from '../structured-data';
+import { SITE_LOCALE, SITE_TITLE, withBase } from '../consts';
 
 interface Props {
 	title: string;
 	description: string;
 	image?: ImageMetadata;
+	schema?: JsonLdNode | JsonLdNode[];
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const site = Astro.site!;
 
-const { title, description, image = FallbackImage } = Astro.props;
+const { title, description, image, schema = [] } = Astro.props;
+const imageUrl = coverUrl(image, site);
+const extraSchemas = Array.isArray(schema) ? schema : [schema];
+const graph = [websiteSchema(site), personSchema(site), ...extraSchemas];
 ---
 
 <!-- Global Metadata -->
@@ -38,24 +44,26 @@ const { title, description, image = FallbackImage } = Astro.props;
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
+<JsonLd schema={{ '@context': 'https://schema.org', '@graph': graph }} />
+
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="description" content={description} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:locale" content="es_ES" />
+<meta property="og:locale" content={SITE_LOCALE} />
 <meta property="og:site_name" content={SITE_TITLE} />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image.src, Astro.url)} />
+<meta property="og:image" content={imageUrl} />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={new URL(image.src, Astro.url)} />
+<meta name="twitter:image" content={imageUrl} />
 
 /*verification google*/
 <meta name="google-site-verification" content="G_Tx1McbN5koTwINeiTTI-zi5NrrGK68Oi7_TpRImOM" />
